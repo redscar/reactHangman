@@ -27,7 +27,6 @@ function App() {
   const [validationMessage, setValidationMessage] = useState("");
   const [numberOfGuesses, setNumberOfGuesses] = useState(0);
 
-
   function startGame() {
     {
       /*Start the game by generating a new word, set the current word to all dashes, reset guesses, and the number of guesses */
@@ -40,38 +39,52 @@ function App() {
     setValidationMessage("");
   }
   function handleDisplayAnswer() {
-    {/* Toggle of the answer */}
+    {
+      /* Toggle of the answer */
+    }
     setDisplayAnswer(!displayAnswer);
   }
 
   function handleChangeNumberGuesses(number) {
-     {/* If the number of guesses changes then reset everything */}
+    {
+      /* If the number of guesses changes then reset everything */
+    }
     settotalGuesses(number);
     setNumberOfGuesses(0);
   }
-  function generateGuessedLetters(){
-     {/* Loop through our guesses and return a nice looking stylized piece */}
-    return usedGuesses.map(function(letter, i) {
-      return <span key={i} className="text-center guessedLetter">{letter}</span>;
-    }); 
-  }
-  function getPercentageOfGuesses(){
-     {/* Calculate the percentage and return a class that corresponds with it*/}
-    let percentageMath = ((totalGuesses - numberOfGuesses)/totalGuesses) * 100;
-  
-    if(percentageMath > 75){
-      return 'turnsNormal';
-    }else if(percentageMath > 50){
-      return 'turnsHigh';
-    }else if(percentageMath > 25){
-      return 'turnsMedium';
-    }else{
-      return 'turnsLow';
+  function generateGuessedLetters() {
+    {
+      /* Loop through our guesses and return a nice looking stylized piece */
     }
+    return usedGuesses.map(function (letter, i) {
+      return (
+        <span key={i} className="text-center guessedLetter">
+          {letter}
+        </span>
+      );
+    });
+  }
+  function getPercentageOfGuesses() {
+    {
+      /* Calculate the percentage and return a class that corresponds with it*/
+    }
+    let percentageMath =
+      ((totalGuesses - numberOfGuesses) / totalGuesses) * 100;
 
+    if (percentageMath > 75) {
+      return "turnsNormal";
+    } else if (percentageMath > 50) {
+      return "turnsHigh";
+    } else if (percentageMath > 25) {
+      return "turnsMedium";
+    } else {
+      return "turnsLow";
+    }
   }
   function guessLetter(userGuess) {
-     {/* Main guess function */}
+    {
+      /* Main guess function */
+    }
     userGuess = userGuess.toLowerCase();
     {
       /*Make sure only alphabetical characters are used. If not return an error */
@@ -97,7 +110,9 @@ function App() {
     let wordStatus = [];
     let splitWord = originalWord.split("");
     let foundLetter = false;
-     {/* Split the word into an array, loop over it and see if the guessed letter matches a letter in split*/}
+    {
+      /* Split the word into an array, loop over it and see if the guessed letter matches a letter in split*/
+    }
 
     if (splitWord.indexOf(userGuess) >= 0) {
       foundLetter = true;
@@ -151,12 +166,15 @@ function App() {
           </Col>
         </Row>
         <Row>
-          <Col  md={{ span: 3}}  className="text-center"> 
+          <Col md={{span: 3}} className="text-center">
             <h4>Letters Guessed:</h4>
             <Row id="guessArea">{generateGuessedLetters()}</Row>
           </Col>
-          <Col  md={{ span: 3, offset: 3 }} className="text-center">
-            <h4>Turns Remaining:</h4> <div id="turnsRemaining" className={getPercentageOfGuesses()}>{totalGuesses - numberOfGuesses}</div>
+          <Col md={{span: 3, offset: 3}} className="text-center">
+            <h4>Turns Remaining:</h4>{" "}
+            <div id="turnsRemaining" className={getPercentageOfGuesses()}>
+              {totalGuesses - numberOfGuesses}
+            </div>
           </Col>
         </Row>
         <Row>
@@ -186,18 +204,34 @@ function App() {
         </Row>
         <Row>
           <Col className="text-center">
-            
-              {currentWord === originalWord && (
-                <p className="animated tada"><h1>You Win!</h1>
-                <br/>
-                <p> <Button onClick={startGame} variant="success">Play Again</Button></p>
+            {currentWord === originalWord && (
+              <p className="animated tada">
+                <h1>You Win!</h1>
+                <br />
+                <p>
+                  {" "}
+                  <Button onClick={startGame} variant="success">
+                    Play Again
+                  </Button>
                 </p>
-              )}
-              {numberOfGuesses >= totalGuesses && <p><h1>Game Over</h1><br/>
-              <p>The word was <strong className="text-warning">{originalWord}</strong></p>
-              <p> <Button onClick={startGame} variant="success">Play Again</Button></p>
-               </p>}
-            
+              </p>
+            )}
+            {numberOfGuesses >= totalGuesses && (
+              <p>
+                <h1>Game Over</h1>
+                <br />
+                <p>
+                  The word was{" "}
+                  <strong className="text-warning">{originalWord}</strong>
+                </p>
+                <p>
+                  {" "}
+                  <Button onClick={startGame} variant="success">
+                    Play Again
+                  </Button>
+                </p>
+              </p>
+            )}
           </Col>
         </Row>
         <hr />
