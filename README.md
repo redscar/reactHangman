@@ -1,8 +1,8 @@
-## Available Scripts
+## To Get Started
+Once the repo is installed, run `npm install`. This will take a moment.
 
-In the project directory, you can run:
-
-### `npm start`
+## To start the app
+Run  `npm start` in the console.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
